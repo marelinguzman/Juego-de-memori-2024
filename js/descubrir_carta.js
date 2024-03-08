@@ -1,39 +1,33 @@
-/* DESCUBRIR CARTA */
-let todas_las_cartad = document.querySelectorAll(".carta_trasera");
+// Programa para activar las cartas al hacer clic en ellas
+let todas_las_cartas = document.querySelectorAll(".carta_tracera");
 
-    /* Itera sobre cada carta trasera */
-    todas_las_cartad.forEach((cada_div)=>{
-        /* Agrega un event listener para el evento "click" a cada carta trasera */
-        cada_div.addEventListener("click", ()=>{
+// foreach sobre todas las cartas
+todas_las_cartas.forEach((cada_div) => {
 
-            /* CANTIDAD DE CARTAS DESCUBIERTAS */
-
-            /* Selecciona todas las cartas que están actualmente activas (descubiertas)*/
-            let cartas_descubiertas = document.querySelectorAll(".activar");
-            /* Obtiene el número total de cartas descubiertas */
-            let total_descubiertas = cartas_descubiertas.length;
-
-            /* Comprueba si hay menos de 2 cartas descubiertas */
-            if(total_descubiertas<2){
-                /* Agrega la clase "activar" a la carta que el usuario ha hecho clic */
-                cada_div.classList.add("activar");
-                /* Actualiza la lista de cartas descubiertas después de agregar una nueva */
-                cartas_descubiertas = document.querySelectorAll(".activar");
-                
-                /* Imprime en la consola las cartas descubiertas */
-                console.log(cartas_descubiertas);
-                /* Verifica si hay exactamente una carta descubierta */
-                if (total_descubiertas == 1){
-                    /* Espera 1000 milisegundos (1 segundo) antes de ejecutar la siguiente función */
-                    setTimeout(()=>{
-                        /* Itera sobre cada carta descubierta y elimina la clase "activar" */
-                        cartas_descubiertas.forEach((cada_carta_descubierta)=>{
-                            cada_carta_descubierta.classList.remove("activar");
-                        })
-                    }, 1000); /* El tiempo de espera es 1 segundo */ 
-                }
-
+    /* Función al realizar clic en una carta */
+    cada_div.addEventListener("click", () => {
+        
+        /* Contar la cantidad de cartas descubiertas */
+        let cartas_descubiertas = document.querySelectorAll(".activar");
+        let total_descubiertas = cartas_descubiertas.length;
+        
+        // Si hay menos de 2 cartas descubiertas, se activa la carta clicada
+        if (total_descubiertas < 2) {
+            cada_div.classList.add("activar");
+            cartas_descubiertas = document.querySelectorAll(".activar");
+            
+            // Si hay una carta descubierta, se desactivan después de 1 segundo
+            if (total_descubiertas == 1) {
+                // Se utiliza setTimeout para esperar un segundo antes de desactivar las cartas
+                setTimeout(() => {
+                    cartas_descubiertas.forEach((cada_carta_descubierta) => {
+                        cada_carta_descubierta.classList.remove("activar");
+                    });
+                }, 1000);    
             }
-
-        });
+        } else {
+            /* Imprimir mensaje si ya hay 2 cartas descubiertas */
+            console.log("Dos cartas descubiertas");
+        }
+    });
 });
